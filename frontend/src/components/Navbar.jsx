@@ -11,16 +11,16 @@ const Navbar = () => {
             {/* Menu */}   
             <h1 className="w-full text-3xl font-bold text-[#00df9a]">Pathogen ID</h1>
             <ul className="hidden md:flex uppercase">
-                <li className="p-4 text-white">
+                <li className="p-4 text-white hover:text-[#00df9a] duration-300">
                     <a href="/">Home</a>
                 </li>
-                <li className="p-4 text-white">
+                <li className="p-4 text-white hover:text-[#00df9a] duration-300">
                     <a href="/about">About</a>
                 </li>
             </ul>
 
             {/* Hamburger */}
-            <div onClick={handleClick} className='md:hidden z-10'>
+            <div onClick={handleClick} className='md:hidden z-10 hover:text-[#00df9a]'>
                 {!nav ? <FaBars /> : <FaTimes />}
             </div>
 
@@ -33,8 +33,8 @@ const Navbar = () => {
                         : 'absolute top-0 left-0 w-full h-screen bg-[#0a192f] flex flex-col justify-center items-center'
                 }
                 >
-                    <li className="p-4 border-b border-[#414141] text-white"><a href="/">Home</a></li>
-                    <li className="p-4 border-b border-[#414141] text-white"><a href="/about">About</a></li>
+                    <li className="p-4 border-b border-[#414141] text-white hover:text-[#00df9a] duration-300"><a href="/">Home</a></li>
+                    <li className="p-4 border-b border-[#414141] text-white hover:text-[#00df9a] duration-300"><a href="/about">About</a></li>
                 </ul>
             </div>
         </div>
