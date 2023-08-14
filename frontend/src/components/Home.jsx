@@ -1,6 +1,7 @@
 import React from 'react';
 import { HiArrowNarrowRight } from 'react-icons/hi';
 import Navbar from "./Navbar";
+import UploadImage from './UploadImage';
 
 const Home = () => {
   return (
@@ -17,14 +18,10 @@ const Home = () => {
         </h3>
         <p className='text-[#8892b0] py-4 max-w-[700px] text-center'>
           Make sure the image is clear and taken with resolution of minimum 400x maginification recommended.
+          Image should be of minimum 500x500 pixels.
         </p>
         <div>
-          <button className='text-[#00df9a] group border-2 px-6 py-3 my-2 border-[#00df9a] flex items-center hover:text-white hover:bg-[#00df9a] hover:border-[#00df9a] duration-300'>
-            Choose Files
-            <span className='group-hover:-rotate-90 duration-300'>
-              <HiArrowNarrowRight className='ml-3 ' />
-            </span>
-          </button>
+          <UploadImage />
         </div>
       </div>
     </div>
