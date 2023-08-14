@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import { HiArrowNarrowRight } from 'react-icons/hi';
 import { useNavigate } from 'react-router-dom';
 
@@ -9,10 +10,22 @@ function UploadImage() {
     setSelectedFile(event.target.files[0]);
   };
 
-  const handleUpload = () => {
-    // Here you can implement the code to send the selectedFile to the backend
-    // using Axios or fetch
-    navigate('/results');
+  const handleUpload = async () => {
+    if (selectedFile) {
+      const formData = new FormData();
+      formData.append('image', selectedFile);
+
+      try {
+        // Send the image to the backend using Axios
+        const response = await axios.post('http://localhost:5000/upload', formData); // Adjust the endpoint URL
+        console.log(response.data); // Display response from the backend
+
+        // Redirect to Results component
+        navigate('/results');
+      } catch (error) {
+        console.error('Error uploading file:', error);
+      }
+    }
   };
 
   return (
@@ -34,7 +47,7 @@ function UploadImage() {
       id='fileInput'
     />
     {selectedFile && (
-      <p className='mx-3'>Selected File: {selectedFile.name}</p>
+      <p className='mx-3 text-white'>Selected File: {selectedFile.name}</p>
     )}
     <button onClick={handleUpload} className='text-[#00df9a] group border-2 px-6 py-3 my-2 border-[#00df9a] flex items-center hover:text-white hover:bg-[#00df9a] hover:border-[#00df9a] duration-300'>
       Upload

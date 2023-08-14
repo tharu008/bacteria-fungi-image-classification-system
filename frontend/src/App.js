@@ -1,7 +1,7 @@
 import React from "react";
 import Home from "./components/Home";
 import About from "./components/About";
-import Login from "./components/Login";
+import Signin from "./components/Signin";
 import Registration from "./components/Registration";
 import {Routes, Route} from 'react-router-dom'
 import Results from "./components/Results";
@@ -11,7 +11,7 @@ function App() {
     <>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/signin" element={<Signin />} />
         <Route path="/signup" element={<Registration />} />
         <Route path="/about" element={<About />} />
         <Route path="/results" element={<Results />} />

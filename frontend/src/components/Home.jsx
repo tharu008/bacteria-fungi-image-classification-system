@@ -1,5 +1,4 @@
 import React from 'react';
-import { HiArrowNarrowRight } from 'react-icons/hi';
 import Navbar from "./Navbar";
 import UploadImage from './UploadImage';
 
