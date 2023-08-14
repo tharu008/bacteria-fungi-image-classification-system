@@ -1,8 +1,11 @@
 import React from 'react';
 import { HiArrowNarrowRight } from 'react-icons/hi';
+import Navbar from "./Navbar";
 
 const Home = () => {
   return (
+    <>
+    <Navbar />
     <div name='home' className='w-full h-screen bg-[#0a192f]'>
       {/* Container */}
       <div className='max-w-[1000px] mx-auto px-8 flex flex-col justify-center items-center h-full'>
@@ -25,6 +28,7 @@ const Home = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 
