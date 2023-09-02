@@ -2,10 +2,14 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { HiArrowNarrowRight } from 'react-icons/hi';
 import { useNavigate } from 'react-router-dom';
+import { useImageContext } from '../context/ImageContext'; // Import the context
+
 
 function UploadImage() {
   const [selectedFile, setSelectedFile] = useState(null);
   const navigate = useNavigate(); //initiallizing useHistory() instance
+  const { setSelectedImage } = useImageContext(); // Access the setSelectedImage function from context
+
   const handleFileChange = (event) => {
     setSelectedFile(event.target.files[0]);
   };
@@ -18,7 +22,12 @@ function UploadImage() {
       try {
         // Send the image to the backend using Axios
         const response = await axios.post('http://localhost:5000/upload', formData); // Adjust the endpoint URL
+        navigate('/results');
+
         console.log(response.data); // Display response from the backend
+
+        // Set the selectedImage state in context
+        setSelectedImage(selectedFile);
 
         // Redirect to Results component
         navigate('/results');
