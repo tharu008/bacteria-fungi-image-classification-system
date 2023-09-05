@@ -5,7 +5,9 @@ import { useImageContext } from "../context/ImageContext"; // Import the context
 
 function Results() {
     const { selectedImage } = useImageContext(); // Access the selected image from context
+    const imageUrl = selectedImage ? URL.createObjectURL(selectedImage) : null;
 
+    
     return (
         <>
         <div>
@@ -13,8 +15,9 @@ function Results() {
             <h1>Results</h1>
             {selectedImage && (
                 <div>
+                    
                     <h2>Uploaded Image:</h2>
-                    <img src={URL.createObjectURL(selectedImage)} alt="Uploaded" />
+                    <img src={imageUrl} alt="Uploaded" />                    
                 </div>
             )}
         </div>

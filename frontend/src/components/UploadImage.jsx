@@ -16,24 +16,11 @@ function UploadImage() {
 
   const handleUpload = async () => {
     if (selectedFile) {
-      const formData = new FormData();
-      formData.append('image', selectedFile);
+      // Set the selectedImage state in context
+      setSelectedImage(selectedFile);
 
-      try {
-        // Send the image to the backend using Axios
-        const response = await axios.post('http://localhost:5000/upload', formData); // Adjust the endpoint URL
-        navigate('/results');
-
-        console.log(response.data); // Display response from the backend
-
-        // Set the selectedImage state in context
-        setSelectedImage(selectedFile);
-
-        // Redirect to Results component
-        navigate('/results');
-      } catch (error) {
-        console.error('Error uploading file:', error);
-      }
+      // Redirect to Results component
+      navigate('/results');
     }
   };
 
