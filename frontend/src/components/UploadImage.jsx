@@ -16,13 +16,61 @@ function UploadImage() {
 
   const handleUpload = async () => {
     if (selectedFile) {
-      // Set the selectedImage state in context
-      setSelectedImage(selectedFile);
+      // Perform validation here
+      const isValid = await validateImage(selectedFile);
 
-      // Redirect to Results component
-      navigate('/results');
+      if (isValid) {
+        // Set the selectedImage state in context
+        setSelectedImage(selectedFile);
+        // Redirect to Results component
+        navigate('/results');
+
+        // Create a FormData object to send the image to the backend
+        const formData = new FormData();
+        formData.append('image', selectedFile);
+
+        try {
+          // Send the image to the backend using Axios
+          await axios.post('http://localhost:5000/upload', formData, {
+            headers: {
+              'Content-Type': 'multipart/form-data',
+            },
+          });
+
+          
+        } catch (error) {
+          console.error("Error uploading image to the backend: ", error);
+        }
+              
+      } else {
+        alert('Please upload an image that is at least 500x500 pixels and less than 20MB.');
+      }
     }
   };
+
+  const validateImage = async (file) => {
+    if (!file) {
+      return false;
+    }
+
+    // Check image dimensions (width and height)
+    const image = new Image();
+    image.src = URL.createObjectURL(file);
+
+    return new Promise((resolve) => {
+      image.onload = () => {
+        const width = image.width;
+        const height = image.height;
+        const fileSizeMB = file.size / 1024 / 1024; // Convert to MB
+
+        const isSizeValid = fileSizeMB < 20;
+        const areDimensionsValid = width >= 500 && height >= 500;
+
+        resolve(isSizeValid && areDimensionsValid);
+      };
+    });
+  };
+
 
   return (
     <div className='flex flex-row items-center'>
