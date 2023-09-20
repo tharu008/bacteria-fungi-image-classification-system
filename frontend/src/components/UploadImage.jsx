@@ -41,11 +41,11 @@ function UploadImage() {
           });
 
           // Access the JSON response data here
-          const responseData = response.data;
-          setClassData(responseData); //set the class data from the response
+          const classData = response.data;
+          setClassData(classData); //set the class data from the response
 
           // Use responseData as needed
-          console.log('Response from the backend:', responseData);
+          console.log('Response from the backend:', classData);
 
           
         } catch (error) {
@@ -106,7 +106,11 @@ function UploadImage() {
     <button onClick={handleUpload} className='text-[#00df9a] group border-2 px-6 py-3 my-2 border-[#00df9a] flex items-center hover:text-white hover:bg-[#00df9a] hover:border-[#00df9a] duration-300'>
       Upload
     </button>
-    {classData && <ClassInfo classData={classData} />} {/* Pass classData to ClassInfo */}
+    
+    
+    {classData && <ClassInfo classData={classData} />} 
+    {console.log('classData in UploadImage:', classData)}
+  
   </div>
   );
 }
