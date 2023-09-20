@@ -1,24 +1,8 @@
 import React, { useState, useEffect } from 'react';
 
 
-const Classification = () => {
-  //const [predictedClass, setPredictedClass] = useState(null);
-
-  //useEffect(() => {
-    // Make a GET request to your backend to fetch the predicted class here
-    // You can use the fetch API or a library like axios
-
-    // Replace 'YOUR_BACKEND_API_URL' with your actual backend API URL
-  //   fetch('http://localhost:5000/results')
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       setPredictedClass(data.predicted_class);
-  //     })
-  //     .catch((error) => {
-  //       console.error('Error fetching data:', error);
-  //     });
-  // }, []); // The empty array [] ensures that this effect runs once when the component mounts
-
+const ClassInfo = ({classData}) => {
+  
   
   return (
     <div className='w-full shadow-xl bg-[#8892b0] flex flex-col p-4 md:my-0 my-8 rounded-lg'>
@@ -26,13 +10,13 @@ const Classification = () => {
        <h2 className='text-2xl font-bold text-center py-8 bg-black text-[#00df9a]'>Scientific Classification</h2>
        {/* <p className='text-center text-4xl font-bold'>$149</p> */}
        <div className='text-center font-medium'>
-         <p className='py-2 border-b mx-8 mt-8'>Domain: Eukaryota</p>
-         <p className='py-2 border-b mx-8'>Kingdom: Fungi</p>
-         <p className='py-2 border-b mx-8'>Division: Ascomycota</p>
-         <p className='py-2 border-b mx-8'>Class: Eurotiomycetes</p>
-         <p className='py-2 border-b mx-8'>Order: Eurotiales</p>
-         <p className='py-2 border-b mx-8'>Family: Trichocomaceae</p>
-         <p className='py-2 border-b mx-8'>Genus: Aspergillus</p>
+         <p className='py-2 border-b mx-8 mt-8'>Domain: {classData.domain}</p>
+         <p className='py-2 border-b mx-8'>Kingdom: {classData.kingdom}</p>
+         <p className='py-2 border-b mx-8'>Division: {classData.division}</p>
+         <p className='py-2 border-b mx-8'>Class: {classData.class}</p>
+         <p className='py-2 border-b mx-8'>Order: {classData.order}</p>
+         <p className='py-2 border-b mx-8'>Family: {classData.family}</p>
+         <p className='py-2 border-b mx-8'>Genus: {classData.genus}</p>
 
        </div>
        {/* <button className='bg-black text-[#00df9a] w-[200px] rounded-md font-medium my-6 mx-auto px-6 py-3'>Start Trial</button> */}
@@ -95,4 +79,4 @@ const Classification = () => {
   );
   }
 
-export default Classification;
+export default ClassInfo;

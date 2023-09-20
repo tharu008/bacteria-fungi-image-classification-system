@@ -1,12 +1,16 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS  # Import CORS from flask_cors
 import os
 import requests
 import tensorflow as tf
 from tensorflow import keras
 from PIL import Image
 import numpy as np
+import pymongo
+from bson import ObjectId
 
 app = Flask(__name__)
+CORS(app)
 
 #upload file
 UPLOAD_FOLDER = 'uploads'
@@ -45,20 +49,40 @@ def upload_file():
         prediction = model.predict(image)
 
         # If you have class labels, you can get the class with the highest probability
-        predicted_class = np.argmax(prediction)
+        predicted_class = int(np.argmax(prediction))
         print("Class Label: ", predicted_class)
 
-        # Include the predicted class in the response
-        # response_data = {
-        #     'message': 'File uploaded successfully',
-        #     'predicted_class': predicted_class
-        # }
-        #return jsonify({'predicted_class': predicted_class})
 
+        #db connection
+        # Creating a MongoClient object and connect with the host
+        myclient = pymongo.MongoClient("mongodb://localhost:27017/")
 
-        return jsonify({'message': 'File uploaded successfully'})
-    
+        print(myclient.list_database_names())
+        
+
+        # access the database
+        db = myclient["pathogenID"]
+
+        # accessing the collection of the database
+        collection = db["class_information"]
+
+        # finding the document with class_id equals to predicted_class from the model
+        document = collection.find_one({"class_id" : predicted_class})
+
+        if document:
+            # Remove the ObjectId field and convert the document to a dictionary
+            document_dict = dict(document)
+            document_dict.pop('_id', None)
+
+            print("Retrieved Document:", document_dict)
+
+            return jsonify({"document": document_dict})
+        else:
+            return jsonify({'message': 'No matching document found for predicted_class'})
+
 
 
 if __name__ == '__main__':
     app.run(debug=True)
+
+

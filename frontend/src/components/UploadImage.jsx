@@ -3,12 +3,15 @@ import axios from 'axios';
 import { HiArrowNarrowRight } from 'react-icons/hi';
 import { useNavigate } from 'react-router-dom';
 import { useImageContext } from '../context/ImageContext'; // Import the context
+import ClassInfo from './ClassInfo'; // Import the ClassInfo component
 
 
 function UploadImage() {
   const [selectedFile, setSelectedFile] = useState(null);
   const navigate = useNavigate(); //initiallizing useHistory() instance
   const { setSelectedImage } = useImageContext(); // Access the setSelectedImage function from context
+  const [classData, setClassData] = useState(null); // State to store the class data
+
 
   const handleFileChange = (event) => {
     setSelectedFile(event.target.files[0]);
@@ -31,11 +34,18 @@ function UploadImage() {
 
         try {
           // Send the image to the backend using Axios
-          await axios.post('http://localhost:5000/upload', formData, {
+          const response = await axios.post('http://localhost:5000/upload', formData, {
             headers: {
               'Content-Type': 'multipart/form-data',
             },
           });
+
+          // Access the JSON response data here
+          const responseData = response.data;
+          setClassData(responseData); //set the class data from the response
+
+          // Use responseData as needed
+          console.log('Response from the backend:', responseData);
 
           
         } catch (error) {
@@ -96,6 +106,7 @@ function UploadImage() {
     <button onClick={handleUpload} className='text-[#00df9a] group border-2 px-6 py-3 my-2 border-[#00df9a] flex items-center hover:text-white hover:bg-[#00df9a] hover:border-[#00df9a] duration-300'>
       Upload
     </button>
+    {classData && <ClassInfo classData={classData} />} {/* Pass classData to ClassInfo */}
   </div>
   );
 }
