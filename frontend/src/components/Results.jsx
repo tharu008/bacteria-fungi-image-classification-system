@@ -6,9 +6,11 @@ import ClassInfo from "./ClassInfo";
 
 
 function Results() {
-    const { selectedImage } = useImageContext(); // Access the selected image from context
+    const { selectedImage, classData } = useImageContext(); // Access the selected image from context
+    
     const imageUrl = selectedImage ? URL.createObjectURL(selectedImage) : null;
     
+
     return (
         <>
         <Navbar />
@@ -23,7 +25,7 @@ function Results() {
                     </div>
                 )}
                 </div> 
-                <div><ClassInfo /></div>        
+                <div><ClassInfo classData={classData} /></div> {/* Pass classData as a prop */}       
             </div>                   
             
         </div>

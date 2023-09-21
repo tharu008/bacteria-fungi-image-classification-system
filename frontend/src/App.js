@@ -5,7 +5,6 @@ import Signin from "./components/Signin";
 import Registration from "./components/Registration";
 import {Routes, Route} from 'react-router-dom'
 import Results from "./components/Results";
-import ClassInfo from "./components/ClassInfo";
 
 function App() {
   return (
@@ -16,7 +15,6 @@ function App() {
         <Route path="/signup" element={<Registration />} />
         <Route path="/about" element={<About />} />
         <Route path="/results" element={<Results />} />
-        <Route path="/classinfo" element={<ClassInfo />} />
 
       </Routes>
     </>

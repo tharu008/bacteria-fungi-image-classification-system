@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { HiArrowNarrowRight } from 'react-icons/hi';
 import { useNavigate } from 'react-router-dom';
@@ -8,9 +8,14 @@ import ClassInfo from './ClassInfo'; // Import the ClassInfo component
 
 function UploadImage() {
   const [selectedFile, setSelectedFile] = useState(null);
+  //const [classData, setClassData] = useState(null); // State to store the class data
   const navigate = useNavigate(); //initiallizing useHistory() instance
-  const { setSelectedImage } = useImageContext(); // Access the setSelectedImage function from context
-  const [classData, setClassData] = useState(null); // State to store the class data
+  const { setSelectedImage, classData, setClassData } = useImageContext(); // Access the setSelectedImage function from context
+
+  useEffect(() => {
+    // This effect will run whenever classData changes
+    console.log('classData in UploadImage:', classData);
+  }, [classData]);
 
 
   const handleFileChange = (event) => {
@@ -25,8 +30,9 @@ function UploadImage() {
       if (isValid) {
         // Set the selectedImage state in context
         setSelectedImage(selectedFile);
-        // Redirect to Results component
+        // // Redirect to Results component
         navigate('/results');
+        
 
         // Create a FormData object to send the image to the backend
         const formData = new FormData();
@@ -41,12 +47,12 @@ function UploadImage() {
           });
 
           // Access the JSON response data here
-          const classData = response.data;
+          const classData = response.data.document;
           setClassData(classData); //set the class data from the response
 
           // Use responseData as needed
           console.log('Response from the backend:', classData);
-
+          
           
         } catch (error) {
           console.error("Error uploading image to the backend: ", error);
@@ -78,6 +84,8 @@ function UploadImage() {
 
         resolve(isSizeValid && areDimensionsValid);
       };
+      // Redirect to Results component
+      //navigate('/results');
     });
   };
 
@@ -107,9 +115,9 @@ function UploadImage() {
       Upload
     </button>
     
-    
-    {classData && <ClassInfo classData={classData} />} 
-    {console.log('classData in UploadImage:', classData)}
+   {/* Render ClassInfo as a child component */}
+   <ClassInfo classData={classData} />
+   {/* {classData && console.log('classData in UploadImage:', classData)} */}
   
   </div>
   );
