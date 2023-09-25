@@ -4,6 +4,7 @@ import { HiArrowNarrowRight } from 'react-icons/hi';
 import { useNavigate } from 'react-router-dom';
 import { useImageContext } from '../context/ImageContext'; // Import the context
 import ClassInfo from './ClassInfo'; // Import the ClassInfo component
+import Camera from './Camera';
 
 
 function UploadImage() {
@@ -24,6 +25,13 @@ function UploadImage() {
 
   const handleUpload = async () => {
     if (selectedFile) {
+      // Check if the file type is supported (PNG or JPEG)
+      const supportedTypes = ['image/png', 'image/jpeg'];
+      if (!supportedTypes.includes(selectedFile.type)) {
+        alert('File type not supported. Please upload a PNG or JPEG image.');
+        return;
+      }
+
       // Perform validation here
       const isValid = await validateImage(selectedFile);
 
@@ -91,35 +99,40 @@ function UploadImage() {
 
 
   return (
-    <div className='flex flex-row items-center'>
-    <label
-      htmlFor='fileInput'
-      className='text-[#00df9a] group border-2 px-6 py-3 my-2 border-[#00df9a] flex items-center hover:text-white hover:bg-[#00df9a] hover:border-[#00df9a] duration-300'
-    >
-      Choose Files
-      <span className='group-hover:-rotate-90 duration-300'>
-        <HiArrowNarrowRight className='ml-3' />
-      </span>
-    </label>
-    <input
-      type='file'
-      accept='image/*'
-      onChange={handleFileChange}
-      style={{ display: 'none' }}
-      id='fileInput'
-    />
-    {selectedFile && (
-      <p className='mx-3 text-white'>Selected File: {selectedFile.name}</p>
-    )}
-    <button onClick={handleUpload} className='text-[#00df9a] group border-2 px-6 py-3 my-2 border-[#00df9a] flex items-center hover:text-white hover:bg-[#00df9a] hover:border-[#00df9a] duration-300'>
-      Upload
-    </button>
+    <>
+    <div className='items-center'>
+      <div className='flex flex-row items-center'>
+      <label
+        htmlFor='fileInput'
+        className='text-[#00df9a] group border-2 px-6 py-3 my-2 border-[#00df9a] flex items-center hover:text-white hover:bg-[#00df9a] hover:border-[#00df9a] duration-300'
+      >
+        Choose Files
+        <span className='group-hover:-rotate-90 duration-300'>
+          <HiArrowNarrowRight className='ml-3' />
+        </span>
+      </label>
+      <input
+        type='file'
+        accept='image/*'
+        onChange={handleFileChange}
+        style={{ display: 'none' }}
+        id='fileInput'
+      />
+      {selectedFile && (
+        <p className='mx-3 text-white'>Selected File: {selectedFile.name}</p>
+      )}
+      <button onClick={handleUpload} className='text-[#00df9a] group border-2 px-6 py-3 my-2 border-[#00df9a] flex items-center hover:text-white hover:bg-[#00df9a] hover:border-[#00df9a] duration-300'>
+        Upload
+      </button>
+      
+    {/* Render ClassInfo as a child component */}
+    <ClassInfo classData={classData} />
+    {/* {classData && console.log('classData in UploadImage:', classData)} */}
     
-   {/* Render ClassInfo as a child component */}
-   <ClassInfo classData={classData} />
-   {/* {classData && console.log('classData in UploadImage:', classData)} */}
-  
+    </div>
+    <Camera />
   </div>
+  </>
   );
 }
 

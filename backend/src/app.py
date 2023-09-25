@@ -1,7 +1,6 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS  # Import CORS from flask_cors
 import os
-import requests
 import tensorflow as tf
 from tensorflow import keras
 from PIL import Image
@@ -75,6 +74,9 @@ def upload_file():
             document_dict.pop('_id', None)
 
             print("Retrieved Document:", document_dict)
+
+            # Delete the uploaded image file after sending the response
+            os.remove(filename)
 
             return jsonify({"document": document_dict})
         else:

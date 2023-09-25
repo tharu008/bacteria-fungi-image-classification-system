@@ -5,6 +5,7 @@ import Signin from "./components/Signin";
 import Registration from "./components/Registration";
 import {Routes, Route} from 'react-router-dom'
 import Results from "./components/Results";
+import AllCameras from "./components/AllCameras";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/results" element={<Results />} />
 
       </Routes>
+      
     </>
   );
 }
