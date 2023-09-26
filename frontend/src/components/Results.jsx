@@ -2,6 +2,7 @@ import React from "react";
 import Navbar from "./Navbar";
 import { useImageContext } from "../context/ImageContext"; // Import the context
 import ClassInfo from "./ClassInfo";
+import Remedies from "./Remedies";
 
 
 
@@ -14,7 +15,7 @@ function Results() {
     return (
         <>
         <Navbar />
-        <div className='w-full h-screen bg-white py-16 px-4'>
+        <div className='w-full bg-white py-16 px-4'>
             <div className='max-w-[1240px] mx-auto grid md:grid-cols-2'>
                 <div>
                 {selectedImage && (
@@ -26,8 +27,10 @@ function Results() {
                 )}
                 </div> 
                 <div><ClassInfo classData={classData} /></div> {/* Pass classData as a prop */}       
-            </div>                   
-            
+            </div>                       
+        </div>
+        <div className='w-full bg-[#0a192f] py-16 px-4'>
+            <Remedies /> 
         </div>
         </>
     );

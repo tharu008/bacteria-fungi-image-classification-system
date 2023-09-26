@@ -44,7 +44,7 @@ const Camera = () => {
       {!cameraOpen ? (
         <button
           onClick={openCamera}
-          className="text-[#00df9a] group border-2 px-6 py-3 my-2 border-[#00df9a] bg-[#00df9a] text-[#0a192f] flex items-center hover:text-[#00df9a] hover:bg-[#0a192f] hover:border-[#00df9a] duration-300"
+          className="group border-2 px-6 py-3 my-2 border-[#00df9a] bg-[#00df9a] text-[#0a192f] flex items-center hover:text-[#00df9a] hover:bg-[#0a192f] hover:border-[#00df9a] duration-300"
         >
           Open Camera
         </button>
