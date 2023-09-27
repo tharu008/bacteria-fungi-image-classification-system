@@ -4,7 +4,7 @@ import React from 'react';
 const ClassInfo = ({ classData }) => {
   if (!classData) {
     // Handle the case where classData is undefined (e.g., before receiving the response)
-    console.log('classData is undefined');
+    console.log('classData is undefined in ClassInfo.jsx');
     return null;
   }
   

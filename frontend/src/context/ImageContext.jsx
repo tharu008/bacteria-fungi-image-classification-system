@@ -6,6 +6,7 @@ const ImageContext = createContext(); // Create a context
 export function ImageProvider({ children }) {
   const [selectedImage, setSelectedImage] = useState(null);
   const [classData, setClassData] = useState(null);
+  const [remedyData, setRemedyData] = useState(null);
 
     // Function to clear classData
     const clearClassData = useCallback(() => {
@@ -13,7 +14,7 @@ export function ImageProvider({ children }) {
     }, []);
 
   return (
-    <ImageContext.Provider value={{ selectedImage, setSelectedImage, classData, setClassData, clearClassData }}>
+    <ImageContext.Provider value={{ selectedImage, setSelectedImage, classData, setClassData, clearClassData, remedyData, setRemedyData }}>
       {children}
     </ImageContext.Provider>
   );

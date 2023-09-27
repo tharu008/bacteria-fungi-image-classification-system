@@ -7,7 +7,7 @@ import Remedies from "./Remedies";
 
 
 function Results() {
-    const { selectedImage, classData } = useImageContext(); // Access the selected image from context
+    const { selectedImage, classData, remedyData } = useImageContext(); // Access the selected image from context
     
     const imageUrl = selectedImage ? URL.createObjectURL(selectedImage) : null;
     
@@ -30,7 +30,7 @@ function Results() {
             </div>                       
         </div>
         <div className='w-full bg-[#0a192f] py-16 px-4'>
-            <Remedies /> 
+            <Remedies classData={classData} /> 
         </div>
         </>
     );
