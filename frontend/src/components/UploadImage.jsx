@@ -10,16 +10,14 @@ import Remedies from './Remedies';
 
 function UploadImage() {
   const [selectedFile, setSelectedFile] = useState(null);
-  //const [classData, setClassData] = useState(null); // State to store the class data
   const navigate = useNavigate(); //initiallizing useHistory() instance
-  const { setSelectedImage, classData, setClassData, remedyData, setRemedyData } = useImageContext(); // Access the setSelectedImage function from context
+  const { setSelectedImage, classData, setClassData } = useImageContext(); // Access the setSelectedImage function from context
 
   useEffect(() => {
     // This effect will run whenever classData changes
     console.log('classData in UploadImage:', classData);
-    console.log('remedyData in UploadImage:', remedyData);
 
-  }, [classData, remedyData]);
+  }, [classData]);
 
 
   const handleFileChange = (event) => {
@@ -66,17 +64,6 @@ function UploadImage() {
           // Use responseData as needed
           console.log('Response from the backend:', classData);
   
-          const remedyData = response.data.document.remedies;
-          setRemedyData(remedyData); //set the remedy data from the response
-  
-          // Check if remedyData is an array
-          if (Array.isArray(remedyData)) {
-            // remedyData is an array, you can access and work with it here
-            console.log('Response of remedies from the backend is an array:', remedyData);
-          } else {
-            // remedyData is not an array; handle this case accordingly
-            console.error('Response of remedies from the backend is not an array:', remedyData);
-          }
         } catch (error) {
           console.error("Error uploading image to the backend: ", error);
         }
@@ -156,9 +143,7 @@ function UploadImage() {
     {/* Render ClassInfo as a child component */}
     <ClassInfo classData={classData} />
     <Remedies classData={classData} />
-    {/* {console.log('classData in UploadImage in return:', classData)}
-    {console.log('RemedyData in UploadImage in return:', remedyData)} */}
-
+   
     
     </div>
     <div className="flex justify-center">

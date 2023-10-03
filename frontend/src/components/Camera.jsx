@@ -2,8 +2,8 @@ import React, { useRef, useState } from "react";
 import Webcam from "react-webcam";
 
 const videoConstraints = {
-  width: 500,
-  height: 500,
+  width: 1000,
+  height: 1000,
   facingMode: "environment",
 };
 
@@ -18,9 +18,9 @@ const Camera = () => {
     setCameraOpen(true);
   };
 
-  // const closeCamera = () => {
-  //   setCameraOpen(false);
-  // };
+  const closeCamera = () => {
+    setCameraOpen(false);
+  };
 
   const capturePhoto = async () => {
     const imageSrc = webcamRef.current.getScreenshot();
@@ -56,12 +56,20 @@ const Camera = () => {
             videoConstraints={videoConstraints}
             ref={webcamRef}
           />
-          <button
-            onClick={capturePhoto}
-            className="text-[#00df9a] group border-2 px-6 py-3 my-2 border-[#00df9a] flex items-center hover:text-white hover:bg-[#00df9a] hover:border-[#00df9a] duration-300"
-          >
-            Capture
-          </button>
+          <div className='flex flex-row items-center'>
+            <button
+              onClick={capturePhoto}
+              className="text-[#00df9a] group border-2 px-6 py-3 my-2 border-[#00df9a] flex items-center hover:text-white hover:bg-[#00df9a] hover:border-[#00df9a] duration-300"
+            >
+              Capture
+            </button>
+            <button
+              onClick={closeCamera}
+              className="text-red-500 group border-2 px-6 py-3 my-2 border-red-500 flex items-center hover:text-white hover:bg-red-500 hover:border-red-500 duration-300"
+            >
+              Close Camera
+            </button>
+          </div>
         </>
       ) : (
         <p>Image captured and saved. Redirecting to the home page...</p>

@@ -1,8 +1,9 @@
 import React from 'react';
-import Navbar from "./Navbar";
-import UploadImage from './UploadImage';
+import Navbar from '../components/Navbar';
+import UploadImage from '../components/UploadImage';
+import Footer from '../components/Footer';
 
-const Home = () => {
+const ImageUploadPage = () => {
   return (
     <>
     <Navbar />
@@ -16,16 +17,17 @@ const Home = () => {
           Microscopic image here.
         </h3>
         <p className='text-[#8892b0] py-4 max-w-[700px] text-center'>
-          Make sure the image is clear and taken with resolution of minimum 400x maginification recommended.
-          Image should be of minimum 500x500 pixels.
+        Make sure the microscopic image is clear, and a minimum 400x magnification is recommended. The image must be a minimum of 500x500 pixels in size and under 20MB.
+        Only PNG and JPEG/JPG formats are supported.
         </p>
         <div>
           <UploadImage />
         </div>
       </div>
     </div>
+    <Footer />
     </>
   );
 };
 
-export default Home;
+export default ImageUploadPage;

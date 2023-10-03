@@ -9,12 +9,15 @@ const Navbar = () => {
         <div className='w-full h-[80px] flex justify-between items-center px-4 bg-[#0a192f] text-gray-300'>                
             
             {/* Menu */}   
-            <h1 className="w-full text-3xl font-bold text-[#00df9a]">Pathogen ID</h1>
+            <h1 className="w-full text-3xl font-bold text-[#00df9a]"><a href="/">Pathogen ID</a></h1>
             <ul className="hidden md:flex uppercase">
-                <li className="p-4 text-white hover:text-[#00df9a] duration-300">
+                <li className="p-4 mx-2 text-white hover:text-[#00df9a] duration-300">
                     <a href="/">Home</a>
                 </li>
-                <li className="p-4 text-white hover:text-[#00df9a] duration-300">
+                <li className="p-4 mx-2 text-white hover:text-[#00df9a] duration-300">
+                    <a href="/imageupload">Upload File</a>
+                </li>
+                <li className="p-4 mx-2 text-white hover:text-[#00df9a] duration-300">
                     <a href="/about">About</a>
                 </li>
             </ul>
@@ -34,6 +37,7 @@ const Navbar = () => {
                 }
                 >
                     <li className="p-4 border-b border-[#414141] text-white hover:text-[#00df9a] duration-300"><a href="/">Home</a></li>
+                    <li className="p-4 border-b border-[#414141] text-white hover:text-[#00df9a] duration-300"><a href="/imageupload">Upload File</a></li>
                     <li className="p-4 border-b border-[#414141] text-white hover:text-[#00df9a] duration-300"><a href="/about">About</a></li>
                 </ul>
             </div>
