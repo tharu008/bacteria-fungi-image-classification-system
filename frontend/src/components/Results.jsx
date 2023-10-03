@@ -3,11 +3,12 @@ import Navbar from "./Navbar";
 import { useImageContext } from "../context/ImageContext"; // Import the context
 import ClassInfo from "./ClassInfo";
 import Remedies from "./Remedies";
+import Footer from "./Footer";
 
 
 
 function Results() {
-    const { selectedImage, classData, remedyData } = useImageContext(); // Access the selected image from context
+    const { selectedImage, classData } = useImageContext(); // Access the selected image from context
     
     const imageUrl = selectedImage ? URL.createObjectURL(selectedImage) : null;
     
@@ -32,6 +33,7 @@ function Results() {
         <div className='w-full bg-[#0a192f] py-16 px-4'>
             <Remedies classData={classData} /> 
         </div>
+        <Footer />
         </>
     );
 }
